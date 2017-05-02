@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Create New Guide</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a type="button" class="btn btn-default" href="#">&lt&ltBack</a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input class="form-control" placeholder="Enter title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Short description</label>
+                                        <input class="form-control" placeholder="Enter shortdescription">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Your text</label>
+                                        <textarea class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Select Groups</label>
+                                        <select multiple class="form-control">
+                                            <option>General</option>
+                                            <option>Culture Group</option>
+                                            <option>I-Group</option>
+                                            <option>Bar</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Add files</label>
+                                        <input type="file">
+                                    </div>
+
+
+                                    <button type="submit" class="btn btn-default">Submit Button</button>
+                                    <button type="reset" class="btn btn-default">Reset Button</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+{% endblock %}

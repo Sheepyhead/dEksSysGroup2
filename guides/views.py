@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import Guide, Category
 from django.template.response import SimpleTemplateResponse
-from django.views.generic import TemplateView
 
 
 def index(request):
@@ -12,3 +11,7 @@ def index(request):
 
 def guide(request):
     return SimpleTemplateResponse('guides/guide.html')
+
+
+def create_guide(request):
+    return SimpleTemplateResponse('guides/create_guide.html')

@@ -88,4 +88,7 @@ ENV/
 # Rope project settings
 .ropeproject
 
-*.idea/
+*.idea*
+
+*migrations*
+db.sqlite3
