@@ -11,6 +11,7 @@
                 <div class="col-lg-12   ">
                     <div class="panel panel-default">
                         <div class="panel-heading">
+                            Can't find your problem here?
                             <a type="button" class="btn btn-default" href="{% url 'create_guide' %}">Suggest a
                                 Guide!</a>
                         </div>
@@ -35,6 +36,12 @@
                                                          class="panel-collapse collapse">
                                                         <div class="panel-body">
                                                             {{ suggestion.description }}
+                                                            <br>
+                                                            {% if category.name == "General" %}
+                                                            <a href="guide.html"><button type="button">Create guide for suggestion</button></a>
+                                                                {% else %}
+                                                            <a href="guide.html"><button type="button" title="You don't have the rights to create a guide for this category" disabled>Create guide for suggestion</button></a>
+                                                                {% endif %}
                                                         </div>
                                                     </div>
                                                 </div>
