@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Suggestions for guides</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+                <div class="col-lg-12   ">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Can't find your problem here?
+                            <a type="button" class="btn btn-default" href="{% url 'create_guide' %}">Suggest a
+                                Guide!</a>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <div class="list-category text-primary">
+
+                                {% for category in all_categories %}
+                                    <h3>{{ category }}</h3>
+                                    <div class="list-group">
+                                        {% for suggestion in all_suggestions %}
+                                            {% if suggestion.category == category %}
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a data-toggle="collapse" data-parent="#accordion"
+                                                               href="#collapse{{ suggestion.id }}">{{ suggestion }}</a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapse{{ suggestion.id }}"
+                                                         class="panel-collapse collapse">
+                                                        <div class="panel-body">
+                                                            {{ suggestion.description }}
+                                                            <br>
+                                                            {% if category.name == "General" %}
+                                                            <a href="guide.html"><button type="button">Create guide for suggestion</button></a>
+                                                                {% else %}
+                                                            <a href="guide.html"><button type="button" title="You don't have the rights to create a guide for this category" disabled>Create guide for suggestion</button></a>
+                                                                {% endif %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+{% endblock %}

@@ -12,6 +12,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <a type="button" class="btn btn-default" href="{% url 'create_guide' %}">New Guide</a>
+                            <a type="button" class="btn btn-default" href="{% url 'guide_suggestions' %}">Suggest a Guide!</a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -26,7 +27,7 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 {% for category in all_categories %}
-                                    <div class="tab-pane fade" id="{{ category.id }}-pills">
+                                    <div class="tab-pane" id="{{ category.id }}-pills">
                                         {% if not all_guides %}
                                             No guides here
                                         {% else %}
@@ -43,9 +44,9 @@
                                                             <div id="collapse{{ guide.id }}"
                                                                  class="panel-collapse collapse">
                                                                 <div class="panel-body">
-                                                                    {{ guide.text }}
+                                                                    {{ guide.short_description }}
                                                                     <br>
-                                                                    <a href="{% url 'guide' %}"><button type="button" class="btn btn-default">Read
+                                                                    <a href="{% url 'guide' guideID=guide.id %}"><button type="button" class="btn btn-default">Read
                                                                         more
                                                                     </button></a>
                                                                 </div>
