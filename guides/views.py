@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import Guide, Category, GuideSuggestion
-from .models import Guide, Category
 from .forms import SubmitNewGuide
 from django.template.response import SimpleTemplateResponse
 from django.views import View
@@ -30,3 +29,8 @@ class CreateGuide(View):
             "form": form
         }
         return render(request, 'guides/index.html', context)
+
+def guide_suggestions(request):
+    all_suggestions = GuideSuggestion.objects.all()
+    all_categories = Category.objects.all()
+    return render(request, 'guides/guide_suggestions.html', {'all_suggestions': all_suggestions, 'all_categories': all_categories})
