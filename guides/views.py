@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Guide, Category
+from .forms import SubmitNewGuide
 from django.template.response import SimpleTemplateResponse
+from django.views import View
 
 
 def index(request):
@@ -13,5 +15,17 @@ def guide(request):
     return SimpleTemplateResponse('guides/guide.html')
 
 
-def create_guide(request):
-    return SimpleTemplateResponse('guides/create_guide.html')
+class CreateGuide(View):
+    def get(self, request):
+        form = SubmitNewGuide()
+        context = {
+            "form": form
+        }
+        return render(request, 'guides/create_guide.html', context)
+
+    def post(self, request):
+        form = SubmitNewGuide(request.POST)
+        context = {
+            "form": form
+        }
+        return render(request, 'guides/index.html', context)
