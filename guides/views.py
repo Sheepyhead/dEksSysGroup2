@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Guide, Category
+from .models import Guide, Category, GuideSuggestion
 from .forms import SubmitNewGuide
 from django.template.response import SimpleTemplateResponse
 from django.views import View
@@ -11,9 +11,9 @@ def index(request):
     return render(request, 'guides/index.html', {'all_guides': all_guides, 'all_categories': all_categories})
 
 
-def guide(request):
-    return SimpleTemplateResponse('guides/guide.html')
+def guide(request, guideID):
 
+    return render(request, 'guides/guide.html', {'guide' : Guide.objects.get(pk=guideID)})
 
 class CreateGuide(View):
     def get(self, request):
@@ -29,3 +29,8 @@ class CreateGuide(View):
             "form": form
         }
         return render(request, 'guides/index.html', context)
+
+def guide_suggestions(request):
+    all_suggestions = GuideSuggestion.objects.all()
+    all_categories = Category.objects.all()
+    return render(request, 'guides/guide_suggestions.html', {'all_suggestions': all_suggestions, 'all_categories': all_categories})

@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = 'h%jtgp_6aigltb*h(s3$!^(c5=noj!+*_va7f2&42qt6y_%=sb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -52,7 +52,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'dEksSysGroup2.urls'
-DEFAULT_REDIRECT_URL = 'http://www.shaar.herokuapp.com'
 
 TEMPLATES = [
     {
@@ -121,10 +120,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = ""
 
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join("static"), )
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
