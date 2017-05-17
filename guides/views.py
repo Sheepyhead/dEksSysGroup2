@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Guide, Category, GuideSuggestion
+from .models import Guide, Category, Subcategory, GuideSuggestion
 from .forms import SubmitNewGuide, SubmitNewRequest
 from django.template.response import SimpleTemplateResponse
 from django.views import View
@@ -8,7 +8,8 @@ from django.views import View
 def index(request):
     all_guides = Guide.objects.all()
     all_categories = Category.objects.all()
-    return render(request, 'guides/index.html', {'all_guides': all_guides, 'all_categories': all_categories})
+    all_subcategories = Subcategory.objects.all()
+    return render(request, 'guides/index.html', {'all_guides': all_guides, 'all_categories': all_categories, 'all_subcategories': all_subcategories})
 
 
 def guide(request, guide_id):
@@ -29,7 +30,9 @@ class CreateGuide(View):
             Guide.objects.create(title=form.cleaned_data['title'],
                                  short_description=form.cleaned_data['short_description'],
                                  text=form.cleaned_data['text'],
-                                 category=form.cleaned_data['category'], author=request.user)
+                                 category=form.cleaned_data['category'],
+                                 subcategory=form.cleaned_data['subcategory'],
+                                 author=request.user)
         return index(request)
 
 

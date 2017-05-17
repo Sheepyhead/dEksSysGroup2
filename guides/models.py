@@ -29,6 +29,7 @@ class Guide(models.Model):
     short_description = models.CharField(max_length=100, default="")
     text = models.TextField()
     category = models.ForeignKey(Category)
+    subcategory = models.CharField(max_length=20, default="General")
     author = models.CharField(max_length=20, default="Anonymous")
 
     def __str__(self):
