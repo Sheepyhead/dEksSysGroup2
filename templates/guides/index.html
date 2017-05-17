@@ -12,7 +12,8 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <a type="button" class="btn btn-default" href="{% url 'create_guide' %}">New Guide</a>
-                            <a type="button" class="btn btn-default" href="{% url 'guide_suggestions' %}">Suggest a Guide!</a>
+                            <a type="button" class="btn btn-default" href="{% url 'guide_suggestions' %}">Suggest a
+                                Guide!</a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -46,9 +47,12 @@
                                                                 <div class="panel-body">
                                                                     {{ guide.short_description }}
                                                                     <br>
-                                                                    <a href="{% url 'guide' guideID=guide.id %}"><button type="button" class="btn btn-default">Read
-                                                                        more
-                                                                    </button></a>
+                                                                    <a href="{% url 'guide' guide_id=guide.id %}">
+                                                                        <button type="button" class="btn btn-default">
+                                                                            Read
+                                                                            more
+                                                                        </button>
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
