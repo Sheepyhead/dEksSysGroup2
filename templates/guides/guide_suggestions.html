@@ -2,62 +2,60 @@
 {% block content %}
     <!-- Page Content -->
     <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Requests for guides</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-                <div class="col-lg-12   ">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Can't find your problem here?
-                            <a type="button" class="btn btn-default" href="{% url 'request_guide' %}">Request a
-                                Guide!</a>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <!-- Nav tabs -->
-                            <div class="list-category text-primary">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Requests for guides</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+            <div class="col-lg-12   ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Can't find your problem here?
+                        <a type="button" class="btn btn-default" href="{% url 'request_guide' %}">Request a
+                            Guide!</a>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <!-- Nav tabs -->
+                        <div class="list-category text-primary">
 
-                                {% for category in all_categories %}
-                                    <h3>{{ category }}</h3>
-                                    <div class="list-group">
-                                        {% for suggestion in all_suggestions %}
-                                            {% if suggestion.category == category %}
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion"
-                                                               href="#collapse{{ suggestion.id }}">{{ suggestion }}</a>
-                                                        </h4>
-                                                    </div>
-                                                    <div id="collapse{{ suggestion.id }}"
-                                                         class="panel-collapse collapse">
-                                                        <div class="panel-body">
-                                                            {{ suggestion.description }}
-                                                            <br>
-                                                            {% if category.name == "General" %}                                                            
-                                                            <a href="create_guide.html"><button type="button">Create guide for request</button></a>
-                                                             {% endif %}
-                                                        </div>
+                            {% for category in all_categories %}
+                                <h3>{{ category }}</h3>
+                                <div class="list-group">
+                                    {% for suggestion in all_suggestions %}
+                                        {% if suggestion.category == category %}
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion"
+                                                           href="#collapse{{ suggestion.id }}">{{ suggestion }}</a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapse{{ suggestion.id }}"
+                                                     class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        {{ suggestion.description }}
+                                                        <br>
+                                                        {% if category.name == "General" %}
+                                                            <a type="button" class="btn btn-default"
+                                                               href="{% url 'create_guide' %}">Create guide</a>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                {% endfor %}
-                            </div>
-
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
                         </div>
-                        <!-- /.panel-body -->
+
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.panel-body -->
                 </div>
+                <!-- /.panel -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.row -->
     </div>
     <!-- /#page-wrapper -->
 {% endblock %}

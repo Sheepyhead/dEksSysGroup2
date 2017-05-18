@@ -2,76 +2,80 @@
 {% block content %}
     <!-- Page Content -->
     <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Guides</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-                <div class="col-lg-12   ">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a type="button" class="btn btn-default" href="{% url 'create_guide' %}">New Guide</a>
-                            <a type="button" class="btn btn-default" href="{% url 'guide_suggestions' %}">Suggest a
-                                Guide!</a>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-pills">
-                                {% for category in all_categories %}
-                                    <li><a href="#{{ category.id }}-pills" data-toggle="tab">{{ category.name }}</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Guides</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+            <div class="col-lg-12   ">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <a type="button" class="btn btn-default" href="{% url 'create_guide' %}">New Guide</a>
+                        <a type="button" class="btn btn-default" href="{% url 'guide_suggestions' %}">Suggest a
+                            Guide!</a>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-pills">
+                            {% for category in all_categories %}
+                                <li><a href="#{{ category.id }}-pills" data-toggle="tab">{{ category.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
 
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                {% for category in all_categories %}
-                                    <div class="tab-pane" id="{{ category.id }}-pills">
-                                        {% if not all_guides %}
-                                            No guides here
-                                        {% else %}
-                                            <div class="panel-group" id="accordion">
-                                                {% for guide in all_guides %}
-                                                    {% if guide.category == category %}
-                                                        <div class="panel panel-default">
-                                                            <div class="panel-heading">
-                                                                <h4 class="panel-title">
-                                                                    <a data-toggle="collapse" data-parent="#accordion"
-                                                                       href="#collapse{{ guide.id }}">{{ guide.title }}</a>
-                                                                </h4>
-                                                            </div>
-                                                            <div id="collapse{{ guide.id }}"
-                                                                 class="panel-collapse collapse">
-                                                                <div class="panel-body">
-                                                                    {{ guide.short_description }}
-                                                                    <br>
-                                                                    <a href="{% url 'guide' guide_id=guide.id %}">
-                                                                        <button type="button" class="btn btn-default">
-                                                                            Read
-                                                                            more
-                                                                        </button>
-                                                                    </a>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            {% for category in all_categories %}
+                                <div class="tab-pane" id="{{ category.id }}-pills">
+                                    {% if not all_guides %}
+                                        No guides here
+                                    {% else %}
+                                        <div class="panel-group" id="accordion">
+                                            {% for sub in all_subcategories %}
+                                                {% if sub.super_category == category %}
+                                                    <h3>{{ sub }}</h3>
+                                                    {% for guide in all_guides %}
+                                                        {% if guide.subcategory == sub %}
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <h4 class="panel-title">
+                                                                        <a data-toggle="collapse"
+                                                                           data-parent="#accordion"
+                                                                           href="#collapse{{ guide.id }}">{{ guide.title }}</a>
+                                                                    </h4>
+                                                                </div>
+                                                                <div id="collapse{{ guide.id }}"
+                                                                     class="panel-collapse collapse">
+                                                                    <div class="panel-body">
+                                                                        {{ guide.short_description }}
+                                                                        <br>
+                                                                        <a href="{% url 'guide' guide_id=guide.id %}">
+                                                                            <button type="button"
+                                                                                    class="btn btn-default">
+                                                                                Read
+                                                                                more
+                                                                            </button>
+                                                                        </a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                {% endfor %}
-                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
                         </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.panel-body -->
                 </div>
+                <!-- /.panel -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.row -->
     </div>
     <!-- /#page-wrapper -->
 {% endblock %}
